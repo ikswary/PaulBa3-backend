@@ -15,16 +15,13 @@ class User(models.Model):
     class Meta:
         db_table = 'users'
 
-
 class ClausesConfirmation(models.Model):
     user_id = models.ForeignKey('User', on_delete=models.SET_NULL, null=True)
-    clausers_id = models.ForeignKey(
-        'ClausesOption', on_delete=models.SET_NULL, null=True)
+    clausers_id = models.ForeignKey('ClausesOption', on_delete=models.SET_NULL, null=True)
     confirm = models.BooleanField()
 
     class Meta:
-        db_table = 'clauses_confirm'
-
+        db_table = 'clauses_confirmations'
 
 class ClausesOption(models.Model):
     type = models.IntegerField()
@@ -32,8 +29,7 @@ class ClausesOption(models.Model):
     content = models.CharField(max_length=3000)
 
     class Meta:
-        db_table = 'clauses_optional'
-
+        db_table = 'clauses_options'
 
 class ClausesEssentials(models.Model):
     type = models.IntegerField()
@@ -41,8 +37,7 @@ class ClausesEssentials(models.Model):
     content = models.CharField(max_length=3000)
 
     class Meta:
-        db_table = 'clauses_essential'
-
+        db_table = 'clauses_essentials'
 
 class UserInfo(models.Model):
     user = models.OneToOneField('User', on_delete=models.CASCADE)
@@ -50,8 +45,7 @@ class UserInfo(models.Model):
     savings_point = models.IntegerField()
 
     class Meta:
-        db_table = 'users_info'
-
+        db_table = 'user_infos'
 
 class Rank(models.Model):
     name = models.CharField(max_length=10)
@@ -60,7 +54,6 @@ class Rank(models.Model):
     class Meta:
         db_table = 'ranks'
 
-
 class Card(models.Model):
     user_id = models.ForeignKey('User', on_delete=models.SET_NULL, null=True)
     code = models.CharField(max_length=45)
@@ -68,10 +61,8 @@ class Card(models.Model):
     class Meta:
         db_table = 'cards'
 
-
 class Crown(models.Model):
-    user_info_id = models.ForeignKey(
-        'UserInfo', on_delete=models.SET_NULL, null=True)
+    user_info_id = models.ForeignKey('UserInfo', on_delete=models.SET_NULL, null=True)
     saving_date = models.DateTimeField()
     saving_target = models.CharField(max_length=50)
     saving_crown = models.IntegerField()
@@ -80,20 +71,17 @@ class Crown(models.Model):
     class Meta:
         db_table = 'user_crowns'
 
-
 class Coupon(models.Model):
-    user_info_id = models.ForeignKey(
-        'UserInfo', on_delete=models.SET_NULL, null=True)
+    user_info_id = models.ForeignKey('UserInfo', on_delete=models.SET_NULL, null=True)
     code = models.IntegerField()
     name = models.CharField(max_length=50)
     expire_date = models.DateTimeField()
-    alive = models.BooleanField()
+    is_available = models.BooleanField()
 
     class Meta:
         db_table = 'user_coupons'
 
-
-class Inquirement(models.Model):
+class Inquery(models.Model):
     title = models.CharField(max_length=45)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
