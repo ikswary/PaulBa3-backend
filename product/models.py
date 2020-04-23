@@ -7,14 +7,12 @@ class Menu(models.Model):
     class Meta:
         db_table = 'menus'
 
-
 class Category(models.Model):
     name = models.CharField(max_length=30)
     menu = models.ForeignKey(Menu, on_delete=models.SET_NULL, null=True)
 
     class Meta:
         db_table = 'categories'
-
 
 class Product(models.Model):
     menu = models.ForeignKey(Menu, on_delete=models.SET_NULL, null=True)
@@ -27,7 +25,6 @@ class Product(models.Model):
     class Meta:
         db_table = 'products'
 
-
 class Image(models.Model):
     product = models.ForeignKey(Product, on_delete=models.SET_NULL, null=True)
     url = models.CharField(max_length=2000)
@@ -35,13 +32,11 @@ class Image(models.Model):
     class Meta:
         db_table = 'images'
 
-
 class Size(models.Model):
     name = models.CharField(max_length=10)
 
     class Meta:
         db_table = 'sizes'
-
 
 class Nutrient(models.Model):
     product = models.ForeignKey(Product, on_delete=models.SET_NULL, null=True)
@@ -59,13 +54,11 @@ class Nutrient(models.Model):
         db_table = 'nutrients'
         unique_together = (('product', 'size'),)
 
-
 class AllergyCauses(models.Model):
     name = models.CharField(max_length=20)
 
     class Meta:
         db_table = 'allergy_causes'
-
 
 class ProductAllergyCauses(models.Model):
     product = models.ForeignKey(Product, on_delete=models.SET_NULL, null=True)
@@ -75,13 +68,11 @@ class ProductAllergyCauses(models.Model):
         db_table = 'product_allergy_causes'
         unique_together = (('product', 'allergy_causes'),)
 
-
 class Milk(models.Model):
     name = models.CharField(max_length=20)
 
     class Meta:
         db_table = 'milks'
-
 
 class MilkSelection(models.Model):
     product = models.ForeignKey(Product, on_delete=models.SET_NULL, null=True)
