@@ -6,7 +6,7 @@ from product.models import Product
 class DetailView(View):
     def get(self, request):
         try:
-            target = request.GET.get('product')
+            target = request.GET.get('product', None)
             info = dict()
             product = Product.objects.prefetch_related('nutrient_set__size',
                                                        'productallergycauses_set__allergy_causes',
@@ -19,19 +19,19 @@ class DetailView(View):
             }
 
             if product.temperature is not '':
-                info['구분'] = product.temperature
+                info['sort'] = product.temperature
             if len(product.milkselection_set.all()) > 0:
-                info['우유 선택'] = list()
+                info['milks'] = list()
                 for milk in product.milkselection_set.all():
-                    info['우유 선택'].append(milk.milk.name)
+                    info['milks'].append(milk.milk.name)
             if len(product.productallergycauses_set.all()) > 0:
-                info['알레르기 유발물질'] = list()
+                info['allergy'] = list()
                 for allergy_id in product.productallergycauses_set.all():
-                    info['알레르기 유발물질'].append(allergy_id.allergy_causes.name)
+                    info['allergy'].append(allergy_id.allergy_causes.name)
             if len(product.nutrient_set.all()) > 0:
-                info['제공사이즈'] = list()
+                info['sizes'] = list()
                 for size_id in product.nutrient_set.all():
-                    info['제공사이즈'].append(size_id.size.name)
+                    info['sizes'].append(size_id.size.name)
 
             nutrient_list = []
             for nutrient in product.nutrient_set.all():
