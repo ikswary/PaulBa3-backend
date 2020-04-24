@@ -21,6 +21,8 @@ class Product(models.Model):
     name_eng = models.CharField(max_length=30)
     description = models.CharField(max_length=300)
     temperature = models.CharField(max_length=10, null=True)
+    is_new = models.BooleanField(null=True)
+    is_best = models.BooleanField(null=True)
 
     class Meta:
         db_table = 'products'
