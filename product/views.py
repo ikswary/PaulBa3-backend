@@ -18,7 +18,7 @@ class DetailView(View):
                 'description': product.description,
             }
 
-            if product.temperature is not '':
+            if product.temperature:
                 info['sort'] = product.temperature
             if len(product.milkselection_set.all()) > 0:
                 info['milks'] = list()
@@ -46,5 +46,4 @@ class DetailView(View):
 
         except Product.DoesNotExist:
             return HttpResponse(status=404)
-
 
