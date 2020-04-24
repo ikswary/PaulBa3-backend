@@ -3,17 +3,21 @@ from django.views import View
 
 from product.models import Product
 
-
 class DetailView(View):
     def get_nutrient_list(self, product):
-        nutrient_list = []
-        for nutrient in product.nutrient_set.all():
-            keys = list(nutrient.__dict__.keys())
-            values = list(nutrient.__dict__.values())
-            nutrients = dict()
-            for i in range(4, len(keys) - 1):
-                nutrients[keys[i]] = values[i]
-            nutrient_list.append(nutrients)
+        nutrient_list = [
+            {
+                'kcal': nutrient.kcal,
+                'protein': nutrient.protein,
+                'sugar': nutrient.sugar,
+                'sodium': nutrient.sodium,
+                'fat': nutrient.fat,
+                'caffeine': nutrient.caffeine,
+                'serve': nutrient.serve,
+                'serve_type': nutrient.serve_type
+            } for nutrient in product.nutrient_set.all()
+        ]
+
         return nutrient_list
 
     def get_product_info(self, product):
