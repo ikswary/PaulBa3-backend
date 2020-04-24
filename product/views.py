@@ -15,7 +15,6 @@ def get_products_in_json(target):
 class MenuView(View):
     def get(self, request, menu, category=None):
         try:
-            print(category)
             target = Menu.objects.prefetch_related('category_set__product_set__image_set').get(name=menu)
             if category:
                 result_list = get_products_in_json(target.category_set.get(id=category))
