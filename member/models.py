@@ -41,7 +41,7 @@ class ClausesEssentials(models.Model):
         db_table = 'clauses_essentials'
 
 class UserInfo(models.Model):
-    user_related = models.ForeignKey('User', on_delete=models.SET_NULL, null=True)
+    user_relation = models.ForeignKey('User', on_delete=models.SET_NULL, null=True)
     rank = models.ForeignKey('Rank', on_delete=models.SET_NULL, null=True)
     savings_point = models.IntegerField()
 
