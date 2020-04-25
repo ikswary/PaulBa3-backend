@@ -7,7 +7,7 @@ from django.views import View
 from django.http import HttpResponse, JsonResponse
 
 from .models import User
-from project_garam.settings import SECRET_KEY, ALGORITHM
+from paulbassett.settings import SECRET_KEY, ALGORITHM
 
 
 class UserView(View):
