@@ -1,5 +1,6 @@
 from django.urls import path, include
 
 urlpatterns = [
-    path('menu', include('product.urls'))
+    path('menu', include('product.urls')),
+    path('branch', include('branch.urls')),
 ]
