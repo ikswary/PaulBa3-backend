@@ -49,7 +49,8 @@ class UserView(View):
 
             User.objects.create(
                 user_id=data['user_id'],
-                password=bcrypt.hashpw(data['password'].encode('utf-8'), bcrypt.gensalt()).decode('utf-8'),
+                password=bcrypt.hashpw(data['password'].encode(
+                    'utf-8'), bcrypt.gensalt()).decode('utf-8'),
                 name=data['name'],
                 birth_date=data['birth_date'],
                 phone=data['phone'],
@@ -60,5 +61,23 @@ class UserView(View):
 
         except IntegrityError:
             return JsonResponse({"message": "DUPLICATED_KEYS"}, status=400)
+        except KeyError:
+            return JsonResponse({"message": "INVALID_KEYS"}, status=400)
+
+class SignInView(View):
+    def post(self, request):
+        data = json.loads(request.body)
+        print(data)
+        try:
+            if User.objects.filter(user_id=data['user_id']).exists():
+                user = User.objects.get(user_id=data['user_id'])
+
+                if bcrypt.checkpw(data['password'].encode('utf-8'), user.password.encode('utf-8')):
+                    token = jwt.encode(
+                        {'id': user.id}, SECRET_KEY, ALGORITHM).decode('utf-8')
+                    return JsonResponse({"token": token}, status=200)
+                return JsonResponse({"message": "INVALID_PASSWORD"}, status=400)
+            return JsonResponse({"message": "INVALID_ID"}, status=400)
+
         except KeyError:
             return JsonResponse({"message": "INVALID_KEYS"}, status=400)
