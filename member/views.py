@@ -8,6 +8,7 @@ from django.http import HttpResponse, JsonResponse
 from django.db import IntegrityError
 
 from .models import User
+from paulbassett.settings import SECRET_KEY, ALGORITHM
 
 
 class UserCheckView(View):
@@ -49,8 +50,7 @@ class UserView(View):
 
             User.objects.create(
                 user_id=data['user_id'],
-                password=bcrypt.hashpw(data['password'].encode(
-                    'utf-8'), bcrypt.gensalt()).decode('utf-8'),
+                password=bcrypt.hashpw(data['password'].encode('utf-8'), bcrypt.gensalt()).decode('utf-8'),
                 name=data['name'],
                 birth_date=data['birth_date'],
                 phone=data['phone'],
@@ -63,6 +63,7 @@ class UserView(View):
             return JsonResponse({"message": "DUPLICATED_KEYS"}, status=400)
         except KeyError:
             return JsonResponse({"message": "INVALID_KEYS"}, status=400)
+
 
 class SignInView(View):
     def post(self, request):
