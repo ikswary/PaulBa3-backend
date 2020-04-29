@@ -64,7 +64,6 @@ class UserView(View):
         except KeyError:
             return JsonResponse({"message": "INVALID_KEYS"}, status=400)
 
-
 class SignInView(View):
     def post(self, request):
         data = json.loads(request.body)
@@ -77,8 +76,8 @@ class SignInView(View):
                     token = jwt.encode(
                         {'id': user.id}, SECRET_KEY, ALGORITHM).decode('utf-8')
                     return JsonResponse({"token": token}, status=200)
-                return JsonResponse({"message": "INVALID_PASSWORD"}, status=400)
-            return JsonResponse({"message": "INVALID_ID"}, status=400)
+                return HttpResponse(status=401)
+            return HttpResponse(status=401)
 
         except KeyError:
             return JsonResponse({"message": "INVALID_KEYS"}, status=400)
