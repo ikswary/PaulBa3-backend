@@ -75,9 +75,8 @@ class DetailView(View):
         ]
         return best_menu_list
 
-    def get(self, request):
+    def get(self, request, target):
         try:
-            target = request.GET.get('product', None)
             product = Product.objects.prefetch_related('nutrient_set__size',
                                                        'productallergycauses_set__allergy_causes',
                                                        'milkselection_set__milk').prefetch_related('image_set').get(
