@@ -94,7 +94,8 @@ class DetailView(View):
             best_menu_list = self.get_best_image_list(best_menus)
 
             return JsonResponse({'menu': menu, 'info': info,
-                                 'nutrients': nutrient_list, 'best_menus': best_menu_list})
+                                 'nutrients': nutrient_list, 'best_menus': best_menu_list},
+                                json_dumps_params={'ensure_ascii': False})
 
         except Product.DoesNotExist:
             return HttpResponse(status=404)
