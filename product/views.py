@@ -8,6 +8,7 @@ class MenuView(View):
     def get_products_in_json(self, target):
         return [
             {
+                'id': product.id,
                 'name_kor': product.name_kor,
                 'name_eng': product.name_eng,
                 'image': product.image_set.first().url,
@@ -80,7 +81,7 @@ class DetailView(View):
             product = Product.objects.prefetch_related('nutrient_set__size',
                                                        'productallergycauses_set__allergy_causes',
                                                        'milkselection_set__milk').prefetch_related('image_set').get(
-                name_eng=target)
+                id=target)
             best_menus = Product.objects.prefetch_related('image_set').filter(menu=product.menu).filter(is_best=True)
 
             menu = {
