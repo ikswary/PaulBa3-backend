@@ -39,13 +39,13 @@ class DetailView(View):
         info = dict()
         if product.temperature:
             info['sort'] = product.temperature
-        if product.milkselection_set.all().count() > 0:
+        if product.milkselection_set.exists():
             info['milks'] = [milk.milk.name for milk in
                              product.milkselection_set.all()]
-        if product.productallergycauses_set.all().count() > 0:
+        if product.productallergycauses_set.exists():
             info['allergy'] = [allergy.allergy_causes.name
                                for allergy in product.productallergycauses_set.all()]
-        if product.nutrient_set.all().count() > 0:
+        if product.menu.id < 3:
             info['sizes'] = [size.size.name for size in product.nutrient_set.all()]
 
         return info
