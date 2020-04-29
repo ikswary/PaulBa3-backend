@@ -16,7 +16,7 @@ class BranchView(View):
                 'tel': branch.tel,
                 'latitude': branch.latitude,
                 'longitude': branch.longitude,
-                'services': [service['service'] for service in branch.branchservice_set.values('service')]
+                'services': list(branch.branchservice_set.values_list('service', flat=True))
             } for branch in branches
         ]
 
@@ -35,7 +35,7 @@ class BranchView(View):
                 branches = area.branch_set.all()
 
             result = self.each_branch_data(branches)
-            return JsonResponse({'branches': result}, status=200)
+            return JsonResponse({'branches': result}, status=200, json_dumps_params={'ensure_ascii': False})
 
         except ObjectDoesNotExist:
             return HttpResponse(status=404)
