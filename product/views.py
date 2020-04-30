@@ -45,7 +45,7 @@ class DetailView(View):
         if product.productallergycauses_set.exists():
             info['allergy'] = [allergy.allergy_causes.name
                                for allergy in product.productallergycauses_set.all()]
-        if product.menu.id < 3:
+        if product.nutrient_set.first().size:
             info['sizes'] = [size.size.name for size in product.nutrient_set.all()]
 
         return info
