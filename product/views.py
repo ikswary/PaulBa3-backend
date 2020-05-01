@@ -8,6 +8,7 @@ class MenuView(View):
     def get_products_in_json(self, target):
         return [
             {
+                'id': product.id,
                 'name_kor': product.name_kor,
                 'name_eng': product.name_eng,
                 'image': product.image_set.first().url,
@@ -38,13 +39,13 @@ class DetailView(View):
         info = dict()
         if product.temperature:
             info['sort'] = product.temperature
-        if product.milkselection_set.all().count() > 0:
+        if product.milkselection_set.exists():
             info['milks'] = [milk.milk.name for milk in
                              product.milkselection_set.all()]
-        if product.productallergycauses_set.all().count() > 0:
+        if product.productallergycauses_set.exists():
             info['allergy'] = [allergy.allergy_causes.name
                                for allergy in product.productallergycauses_set.all()]
-        if product.nutrient_set.all().count() > 0:
+        if product.nutrient_set.exists() and product.nutrient_set.first().size:
             info['sizes'] = [size.size.name for size in product.nutrient_set.all()]
 
         return info
@@ -74,13 +75,12 @@ class DetailView(View):
         ]
         return best_menu_list
 
-    def get(self, request):
+    def get(self, request, target):
         try:
-            target = request.GET.get('product', None)
             product = Product.objects.prefetch_related('nutrient_set__size',
                                                        'productallergycauses_set__allergy_causes',
                                                        'milkselection_set__milk').prefetch_related('image_set').get(
-                name_eng=target)
+                id=target)
             best_menus = Product.objects.prefetch_related('image_set').filter(menu=product.menu).filter(is_best=True)
 
             menu = {
