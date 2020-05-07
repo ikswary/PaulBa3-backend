@@ -1,5 +1,3 @@
-# 수정중
-
 ### 프로젝트 요약
 - 소개: [폴바셋](https://www.baristapaulbassett.co.kr/Index.pb) 웹사이트 클론
 - 기간: 2020.04.20 - 2020.05.01 (약 2주)
@@ -9,9 +7,8 @@
 ----
 
 ### 데모
-- 클릭 시 데모 영상으로 이동
-
-[![메인](https://media.vlpt.us/images/magnoliarfsit/post/eb955457-4c79-4474-b8ba-2f99c9378da4/mainpage.png)](https://www.youtube.com/watch?v=a1vKyWHA8pE&feature=youtu.be)
+[![메인](https://media.vlpt.us/images/magnoliarfsit/post/eb955457-4c79-4474-b8ba-2f99c9378da4/mainpage.png)](https://youtu.be/a1vKyWHA8pE)
+데모영상 보러가기▲(이미지 클릭)
 
 ----
 
