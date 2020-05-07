@@ -1,7 +1,7 @@
 # 수정중
 
 ### 프로젝트 요약
--  소개: [폴바셋](https://www.baristapaulbassett.co.kr/Index.pb) 웹사이트 클론
+- 소개: [폴바셋](https://www.baristapaulbassett.co.kr/Index.pb) 웹사이트 클론
 - 기간: 2020.04.20 - 2020.05.01 (약 2주)
 - 인원: 프론트엔드 2명([MJ Kim](https://github.com/howdy-mj),  [skh417](https://github.com/skh417)), 백엔드 2명([ikswary](https://github.com/ikswary), [Magrfs](https://github.com/Magrfs))
 - Frontend-Repo: [PaulBa3-frontend](https://github.com/wecode-bootcamp-korea/PaulBa3-frontend)
@@ -9,14 +9,14 @@
 ----
 
 ### 데모
-![메인](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https://k.kakaocdn.net/dn/P6z83/btqDQTwo9f8/KH1KZlrKjjdkNm9fjlyk7k/img.png)
+![메인](https://media.vlpt.us/images/magnoliarfsit/post/eb955457-4c79-4474-b8ba-2f99c9378da4/mainpage.png)
 
 ----
 
 ### 사용된 기술
-**Fronted**: JavaScript, React.js, SASS
-**Backed**: Python, Django, Selenium, BeautifulSoup4, MySQL 
-**Deployment**: AWS EC2
+- **Frontend**: JavaScript, React.js, SASS
+- **Backend**: Python, Django, Selenium, BeautifulSoup4, MySQL
+- **Deployment**: AWS EC2
 
 ----
 
