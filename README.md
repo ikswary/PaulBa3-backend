@@ -9,7 +9,9 @@
 ----
 
 ### 데모
-![메인](https://media.vlpt.us/images/magnoliarfsit/post/eb955457-4c79-4474-b8ba-2f99c9378da4/mainpage.png)
+- 클릭 시 데모 영상으로 이동
+
+[![메인](https://media.vlpt.us/images/magnoliarfsit/post/eb955457-4c79-4474-b8ba-2f99c9378da4/mainpage.png)](https://www.youtube.com/watch?v=a1vKyWHA8pE&feature=youtu.be)
 
 ----
 
